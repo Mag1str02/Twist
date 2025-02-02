@@ -1,0 +1,93 @@
+stages:
+  - build
+  - test
+
+build-std-threads:
+  stage: build
+
+  artifacts:
+    expire_in: 1 hrs
+    paths:
+      - build/std-threads/
+
+  tags:
+    - linux
+
+  script:
+    - mkdir -p $CI_PROJECT_DIR/build/std-threads
+    - cd $CI_PROJECT_DIR/build/std-threads
+    - cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-14 -DTWIST_DEVELOPER=ON $CI_PROJECT_DIR
+    - make all
+
+
+build-faulty-threads:
+  stage: build
+
+  artifacts:
+    expire_in: 1 hrs
+    paths:
+      - build/faulty-threads/
+
+  tags:
+    - linux
+
+  script:
+    - mkdir -p $CI_PROJECT_DIR/build/faulty-threads
+    - cd $CI_PROJECT_DIR/build/faulty-threads
+    - cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-14 -DTWIST_DEVELOPER=ON -DTWIST_FAULTY=ON -DTWIST_FAULT_PLACEMENT=BEFORE -DTWIST_ATOMIC_WAIT=ON $CI_PROJECT_DIR
+    - make all
+
+
+build-matrix:
+  stage: build
+
+  artifacts:
+    expire_in: 1 hrs
+    paths:
+      - build/matrix/
+
+  tags:
+    - linux
+
+  script:
+    - mkdir -p $CI_PROJECT_DIR/build/matrix
+    - cd $CI_PROJECT_DIR/build/matrix
+    - cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-14 -DTWIST_DEVELOPER=ON -DTWIST_FAULTY=ON -DTWIST_SIM=ON -DTWIST_SIM_ISOLATION=ON -DTWIST_ATOMIC_WAIT=ON -DSURE_EXCEPTIONS=OFF -DUBSAN=ON $CI_PROJECT_DIR
+    - make all
+
+
+test-std-threads:
+  stage: test
+
+  tags:
+    - linux
+
+  script:
+    - cd $CI_PROJECT_DIR/build/std-threads
+    - ctest -L cross --timeout 60 --rerun-failed --output-on-failure
+    - ctest -L example --timeout 60 --rerun-failed --output-on-failure
+
+
+test-faulty-threads:
+  stage: test
+
+  tags:
+    - linux
+
+  script:
+    - cd $CI_PROJECT_DIR/build/faulty-threads
+    - ctest -L cross --timeout 60 --rerun-failed --output-on-failure
+    - ctest -L example --timeout 60 --rerun-failed --output-on-failure
+
+
+test-matrix:
+  stage: test
+
+  tags:
+    - linux
+
+  script:
+    - cd $CI_PROJECT_DIR/build/matrix
+    - ctest -L cross --timeout 60 --rerun-failed --output-on-failure
+    - ctest -L sim --timeout 60 --rerun-failed --output-on-failure
+    - ctest -L example --timeout 60 --rerun-failed --output-on-failure

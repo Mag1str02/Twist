@@ -1,0 +1,6 @@
+if(TWIST_SIM AND TWIST_SIM_ISOLATION)
+    add_subdirectory(mutex_lock_order)
+    add_subdirectory(bounded_queue)
+    add_subdirectory(pthread_cond)
+    add_subdirectory(treiber_stack)
+endif()

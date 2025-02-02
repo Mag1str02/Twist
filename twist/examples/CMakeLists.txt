@@ -1,0 +1,10 @@
+add_subdirectory(futex)
+add_subdirectory(spin)
+add_subdirectory(thread_local)
+add_subdirectory(chrono)
+add_subdirectory(static)
+add_subdirectory(trace)
+
+if(TWIST_SIM AND TWIST_SIM_ISOLATION)
+    add_subdirectory(assist)
+endif()
