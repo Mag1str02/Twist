@@ -10,5 +10,8 @@ enable_language(ASM)
 add_library(wheels STATIC ${LIB_CXX_SOURCES} ${LIB_ASM_SOURCES} ${LIB_HEADERS})
 target_include_directories(wheels PUBLIC ${LIB_INCLUDE_PATH})
 target_link_libraries(wheels PUBLIC pthread gflags_nothreads_static)
+if (WIN32)
+    target_link_libraries(wheels PUBLIC Synchronization)
+endif()
 
 # --------------------------------------------------------------------
