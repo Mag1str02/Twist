@@ -263,6 +263,33 @@ bool ForkResult::KilledBySignal(int& signal) const {
   return false;
 }
 
+#elif WINDOWS
+
+ForkResult ExecuteWithFork(std::function<void()> target, IByteStreamConsumerPtr,
+                           IByteStreamConsumerPtr) {
+  try {
+    target();
+    return ForkResult(0, "", "");
+  } catch (...) {
+    return ForkResult(1, "", "");
+  }
+  WHEELS_UNREACHABLE();
+}
+
+bool ForkResult::Exited(int& exit_code) const {
+  if (status_) {
+    exit_code = status_;
+    return true;
+  }
+  return false;
+}
+
+bool ForkResult::KilledBySignal(int&) const {
+  return false;
+}
+
+#else
+#error "Fork not implemented for this platform"
 #endif
 
 }  // namespace wheels
