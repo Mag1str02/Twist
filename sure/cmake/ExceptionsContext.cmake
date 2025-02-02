@@ -1,0 +1,5 @@
+if(SURE_EXCEPTIONS)
+    set(SURE_EXCEPTIONS_CONTEXT unix)
+else()
+    set(SURE_EXCEPTIONS_CONTEXT nop)
+endif()

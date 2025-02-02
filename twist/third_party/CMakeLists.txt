@@ -1,47 +1,4 @@
-include(FetchContent)
 
-# --------------------------------------------------------------------
-
-# Offline mode (uncomment next line to enable)
-# set(FETCHCONTENT_FULLY_DISCONNECTED ON)
-
-# set(FETCHCONTENT_QUIET OFF)
-
-# --------------------------------------------------------------------
-
-# Core components
-
-FetchContent_Declare(
-        wheels
-        GIT_REPOSITORY https://gitlab.com/Lipovsky/wheels.git
-        GIT_TAG master
-)
-FetchContent_MakeAvailable(wheels)
-
-# --------------------------------------------------------------------
-
-# Futex
-
-if(NOT TWIST_SIM)
-    FetchContent_Declare(
-            futex_like
-            GIT_REPOSITORY https://gitlab.com/Lipovsky/futex_like.git
-            GIT_TAG master
-    )
-    FetchContent_MakeAvailable(futex_like)
-endif()
-
-# --------------------------------------------------------------------
-
-if(TWIST_SIM)
-    # Context switch
-    FetchContent_Declare(
-            sure
-            GIT_REPOSITORY https://gitlab.com/Lipovsky/sure.git
-            GIT_TAG master
-    )
-    FetchContent_MakeAvailable(sure)
-endif()
 
 # --------------------------------------------------------------------
 
