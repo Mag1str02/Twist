@@ -19,7 +19,7 @@ class PageSizeDetector {
 #if UNIX
     return sysconf(_SC_PAGESIZE);
 #elif WINDOWS
-    return 4096;
+    return 4096 * 1024;
 #else
   #error "Platform not supported
 #endif
