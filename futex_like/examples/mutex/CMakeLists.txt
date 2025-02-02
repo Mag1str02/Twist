@@ -1,0 +1,2 @@
+add_executable(futex_like_examples_mutex main.cpp)
+target_link_libraries(futex_like_examples_mutex PRIVATE futex_like)

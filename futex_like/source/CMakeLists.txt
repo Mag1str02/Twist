@@ -1,0 +1,17 @@
+set(FUTEX_LIKE_TARGET futex_like)
+
+get_filename_component(FUTEX_LIKE_INCLUDE_PATH "." ABSOLUTE)
+get_filename_component(FUTEX_LIKE_SOURCE_PATH "futex_like" ABSOLUTE)
+
+if(DEFINED UNIX AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    project_log("Platform: Linux")
+    set(FUTEX_LIKE_SYSTEM_SOURCES ${FUTEX_LIKE_SOURCE_PATH}/system/linux/wait.cpp)
+elseif(DEFINED APPLE)
+    project_log("Platform: Darwin")
+    set(FUTEX_LIKE_SYSTEM_SOURCES ${FUTEX_LIKE_SOURCE_PATH}/system/darwin/wait.cpp)
+else()
+    message(CRITICAL "Platform not supported")
+endif()
+
+add_library(${FUTEX_LIKE_TARGET} STATIC ${FUTEX_LIKE_SYSTEM_SOURCES})
+target_include_directories(${FUTEX_LIKE_TARGET} PUBLIC ${FUTEX_LIKE_INCLUDE_PATH})

@@ -1,0 +1,2 @@
+add_executable(futex_like_examples_flag main.cpp)
+target_link_libraries(futex_like_examples_flag PRIVATE futex_like)

@@ -1,0 +1,4 @@
+add_executable(futex_like_unit_tests unit.cpp)
+target_link_libraries(futex_like_unit_tests futex_like Catch2::Catch2WithMain)
+
+add_test(NAME futex_like_unit_tests COMMAND futex_like_unit_tests)
