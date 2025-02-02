@@ -1,7 +1,5 @@
 #pragma once
 
-#if UNIX
-
 #include <wheels/memory/view.hpp>
 #include <wheels/core/noncopyable.hpp>
 
@@ -72,5 +70,3 @@ class MmapAllocation : public NonCopyable {
 };
 
 }  // namespace wheels
-
-#endif

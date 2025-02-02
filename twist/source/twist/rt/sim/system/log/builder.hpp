@@ -35,14 +35,14 @@ class EventBuilder {
   template <typename... Args>
   EventBuilder& Descr(::fmt::format_string<Args...> format_str, Args&&... args) {
     descr_.Reset();
-    descr_.template Append(format_str, std::forward<Args>(args)...);
+    descr_.Append(format_str, std::forward<Args>(args)...);
     return *this;
   }
 
   template <typename... Args>
   EventBuilder& SetComment(::fmt::format_string<Args...> format_str, Args&&... args) {
     comment_.Reset();
-    comment_.template Append(format_str, std::forward<Args>(args)...);
+    comment_.Append(format_str, std::forward<Args>(args)...);
     return *this;
   }
 

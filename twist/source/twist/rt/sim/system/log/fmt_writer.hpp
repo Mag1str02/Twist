@@ -16,7 +16,7 @@ class FmtWriter {
 
   template <typename... Args>
   void Append(::fmt::format_string<Args...> format_str, Args&&... args) {
-    buf_->template Append(format_str, std::forward<Args>(args)...);
+    buf_->Append(format_str, std::forward<Args>(args)...);
   }
 
  private:

@@ -45,7 +45,7 @@ struct Thread final
              Stack stk,
              ThreadId tid) {
     user = usr;
-    stack = std::move(stk);
+    stack.emplace(std::move(stk));
     id = tid;
 
     parent_id.reset();
