@@ -6,8 +6,6 @@ include(cmake/Logging.cmake)
 option(WHEELS_TESTS "Enable wheels tests" OFF)
 option(WHEELS_DEVELOPER "Wheels development mode" OFF)
 
-add_subdirectory(third_party)
-
 include(cmake/CompileOptions.cmake)
 include(cmake/Platform.cmake)
 

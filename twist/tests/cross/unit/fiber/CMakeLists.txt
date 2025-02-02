@@ -1,16 +1,5 @@
 add_compile_options(-Wno-error=unused-command-line-argument)
 
-include(FetchContent)
-
-FetchContent_Declare(
-        sure
-        GIT_REPOSITORY https://gitlab.com/Lipovsky/sure.git
-        GIT_TAG master
-)
-FetchContent_MakeAvailable(sure)
-
-###
-
 ProjectLog("Cross unit tests: fiber")
 
 add_executable(twist_tests_cross_unit_fiber

@@ -7,8 +7,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 
 include(cmake/Sanitize.cmake)
 
-add_subdirectory(third_party)
-
 option(SURE_DEVELOPER "Sure development mode" OFF)
 option(SURE_TESTS "Enable sure tests" OFF)
 

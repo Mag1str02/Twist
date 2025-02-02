@@ -9,8 +9,6 @@ option(FUTEX_LIKE_EXAMPLES "Enable futex_like examples" OFF)
 include(cmake/Logging.cmake)
 include(cmake/Cxx.cmake)
 
-add_subdirectory(third_party)
-
 include(cmake/Werror.cmake)
 
 add_subdirectory(source)
