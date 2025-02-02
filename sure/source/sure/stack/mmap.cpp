@@ -2,6 +2,8 @@
 
 #include <utility>
 
+#if UNIX
+
 using wheels::MmapAllocation;
 
 namespace sure {
@@ -52,3 +54,6 @@ StackView MmapStack::Release() {
 }
 
 }  // namespace sure
+
+
+#endif

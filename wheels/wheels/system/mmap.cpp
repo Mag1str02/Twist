@@ -1,3 +1,5 @@
+#if UNIX
+
 #include <wheels/system/mmap.hpp>
 
 #include <wheels/system/page_size.hpp>
@@ -88,3 +90,5 @@ void MmapAllocation::Reset() {
 }
 
 }  // namespace wheels
+
+#endif

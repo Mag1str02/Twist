@@ -16,7 +16,13 @@ class PageSizeDetector {
 
  private:
   size_t DetectPageSize() {
+#if UNIX
     return sysconf(_SC_PAGESIZE);
+#elif WINDOWS
+    return 4096;
+#else
+  #error "Platform not supported
+#endif
   }
 
  private:

@@ -75,30 +75,30 @@ void RunTestWithFork(ITestPtr test, const GlobalOptions& options) {
 
   // Process result
 
-  const auto& stderr = result.GetStderr();
+  const auto& error = result.GetStderr();
 
   int exit_code;
   if (result.Exited(exit_code)) {
     if (exit_code != 0) {
       FAIL_TEST("Test subprocess terminated with non-zero exit code: "
                 << exit_code
-                << ", stderr: " << FormatStderrForErrorMessage(stderr));
+                << ", stderr: " << FormatStderrForErrorMessage(error));
     }
   }
 
   int signal;
   if (result.KilledBySignal(signal)) {
-    if (stderr.empty()) {
+    if (error.empty()) {
       FAIL_TEST("Test subprocess terminated by signal: " << signal);
     } else {
       FAIL_TEST("Test subprocess terminated by signal "
                 << signal
-                << ", stderr: " << FormatStderrForErrorMessage(stderr));
+                << ", stderr: " << FormatStderrForErrorMessage(error));
     }
   }
 
-  if (!stderr.empty()) {
-    FAIL_TEST("Test produced stderr: " << FormatStderrForErrorMessage(stderr));
+  if (!error.empty()) {
+    FAIL_TEST("Test produced stderr: " << FormatStderrForErrorMessage(error));
   }
 
   // Test completed!

@@ -1,6 +1,11 @@
 #pragma once
 
-#if defined(SURE_MACHINE_CONTEXT_x86_64)
+
+#if defined(SURE_MACHINE_CONTEXT_x86_64_win)
+
+#include <sure/machine/x86_64_win/context.hpp>
+
+#elif defined(SURE_MACHINE_CONTEXT_x86_64)
 
 #include <sure/machine/x86_64/context.hpp>
 

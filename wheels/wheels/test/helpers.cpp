@@ -11,16 +11,16 @@ static bool IsMultiLine(const std::string& error) {
   return std::count(error.begin(), error.end(), '\n') > 1;
 }
 
-std::string FormatStderrForErrorMessage(const std::string& stderr) {
-  if (stderr.empty()) {
+std::string FormatStderrForErrorMessage(const std::string& err) {
+  if (err.empty()) {
     return "<empty>";
   }
-  if (!IsMultiLine(stderr)) {
-    return stderr;
+  if (!IsMultiLine(err)) {
+    return err;
   }
-  // Multi-line stderr
+  // Multi-line err
   // TODO: stringstream
-  return std::string("\n") + stderr + "\n";
+  return std::string("\n") + err + "\n";
 }
 
 double ToSeconds(std::chrono::milliseconds d) {

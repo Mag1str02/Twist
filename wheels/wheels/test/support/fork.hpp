@@ -21,10 +21,10 @@ using IByteStreamConsumerPtr = std::unique_ptr<IByteStreamConsumer>;
 
 class ForkResult {
  public:
-  ForkResult(int status, std::string stdout, std::string stderr)
+  ForkResult(int status, std::string std_out, std::string std_err)
       : status_(status),
-        stdout_(std::move(stdout)),
-        stderr_(std::move(stderr)) {
+        stdout_(std::move(std_out)),
+        stderr_(std::move(std_err)) {
   }
 
   bool Exited(int& exit_code) const;

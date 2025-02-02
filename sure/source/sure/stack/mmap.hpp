@@ -1,5 +1,7 @@
 #pragma once
 
+#if UNIX
+
 #include <sure/stack_view.hpp>
 
 #include <wheels/system/mmap.hpp>
@@ -45,3 +47,5 @@ class MmapStack {
 };
 
 }  // namespace sure
+
+#endif

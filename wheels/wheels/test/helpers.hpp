@@ -7,7 +7,7 @@
 namespace wheels::test {
 
 // TODO: better
-std::string FormatStderrForErrorMessage(const std::string& stderr);
+std::string FormatStderrForErrorMessage(const std::string& err);
 
 double ToSeconds(std::chrono::milliseconds d);
 
