@@ -15,7 +15,7 @@ T* New(Args&& ... args) {
 
 // Memory access
 
-void MemoryAccess(void* addr, size_t) {
+inline void MemoryAccess(void* addr, size_t) {
   if (addr == nullptr) {
     wheels::Panic("Nullptr access");
   }
