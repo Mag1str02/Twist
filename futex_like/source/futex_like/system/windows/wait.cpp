@@ -7,12 +7,12 @@ namespace futex_like {
 namespace system {
 
 int WaitTimed(uint32_t* loc, uint32_t old, uint32_t millis) {
-  WaitOnAddress(&loc, &old, sizeof(loc), millis);
+  WaitOnAddress(loc, &old, sizeof(*loc), millis);
   return 0;
 }
 
 int Wait(uint32_t* loc, uint32_t old) {
-  WaitOnAddress(&loc, &old, sizeof(loc), UINT32_MAX);
+  WaitOnAddress(loc, &old, sizeof(*loc), UINT32_MAX);
   return 0;
 }
 
