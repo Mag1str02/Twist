@@ -9,8 +9,9 @@ static void MachineContextTrampoline(void*, void*, void*, void*, void* arg5) {
 }
 
 void MachineContext::Setup(StackView stack, ITrampoline* trampoline) {
-  rsp_ = SetupMachineContext(
-      (void*)&stack.back(), (void*)MachineContextTrampoline, (void*)trampoline);
+  rsp_ =
+      SetupMachineContext((void*)&stack.back(), (void*)&stack.front(),
+                          (void*)MachineContextTrampoline, (void*)trampoline);
 }
 
 }  // namespace sure
